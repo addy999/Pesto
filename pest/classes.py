@@ -1,4 +1,5 @@
 import multiprocessing
+import traceback
 from colorterminal import ColorText
 
 class Test:
@@ -26,14 +27,15 @@ class TestSuite:
     def test_runner(self, func):
         try:
             func()
-            return True
-        except:
-            return False
+            return True, ""
+        except Exception as e:
+            exceptiondata = traceback.format_exc().splitlines()
+            return False, exceptiondata[-1] # only print last line of error out
     
     def find_name(self, i):
         return self.tests[i].name
     
-    def run(self, sync=False):
+    def run(self, sync=True):
         print(ColorText.BLUE + "* Running " + self.name.capitalize() + " *")
         pool = multiprocessing.Pool()
         if not sync: 
@@ -42,21 +44,22 @@ class TestSuite:
             results = [self.test_runner(test.func) for test in self.tests]
         
         for i,result in enumerate(results):
-            passed = result == True
+            passed = result[0]
             if passed:
                 print(ColorText.GREEN + "✓ " + ColorText.WHITE + " " + self.find_name(i))
             else:
                 print(ColorText.RED + "x " + ColorText.WHITE + " " + self.find_name(i))
+                print(result[1])
 
     
-if __name__ == '__main__':
-    def good_sum():
-        assert 1+1 == 2
+# if __name__ == '__main__':
+#     def good_sum():
+#         assert 1+1 == 2
     
-    def bad_sum():
-        assert 1+1 == 1
+#     def bad_sum():
+#         assert 1+1 == 1
     
-    TestSuite.describe("you-cam", [
-        Test.it("should add two numbers together", good_sum),
-        Test.it("should not add two numbers together", bad_sum)
-    ]).run(sync = True)
+#     TestSuite.describe("you-cam", [
+#         Test.it("should add two numbers together", good_sum),
+#         Test.it("should not add two numbers together", bad_sum)
+#     ]).run(sync = True)
