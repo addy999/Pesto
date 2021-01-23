@@ -34,7 +34,7 @@ class TestSuite:
         return self.tests[i].name
     
     def run(self, sync=False):
-        print(ColorText.BLUE + "* " + self.name + " *")
+        print(ColorText.BLUE + "* Running " + self.name.capitalize() + " *")
         pool = multiprocessing.Pool()
         if not sync: 
             results = pool.map(self.test_runner, [test.func for test in self.tests])
@@ -50,10 +50,13 @@ class TestSuite:
 
     
 if __name__ == '__main__':
-    def num_add_test():
+    def good_sum():
+        assert 1+1 == 2
+    
+    def bad_sum():
         assert 1+1 == 1
-        return True
     
     TestSuite.describe("you-cam", [
-        Test.it("should add two numbers together", num_add_test)
+        Test.it("should add two numbers together", good_sum),
+        Test.it("should not add two numbers together", bad_sum)
     ]).run(sync = True)
