@@ -1,10 +1,9 @@
+### For debug ###
 import sys
 sys.path.append("../")
-
+################
+from .function import my_awesome_function
 from pest import it, test, describe, expect
-
-def my_awesome_function(a, b):
-    return a + b / 2 + 34
 
 def awesome_function_test_cases():
     # Case 1 
@@ -27,4 +26,4 @@ awesome_tests = describe("awesome function", [
     it("should work on test cases", awesome_function_test_cases),
     it("should raise an error on invalid inputs", awesome_input_check),
     it("should complete 100000 runs in < 1e-5 s", awesome_time_check)
-])
+]).run()

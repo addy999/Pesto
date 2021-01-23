@@ -13,10 +13,11 @@ class Expect:
             raise TypeError(str(type(self.val)) + " and " + str(type(a)) + " are not comparable types.")
     
     def to_be_truthy(self):
-        if not self.val:
-            raise ValueError(str(self.val) + " is not truthy")
+        assert (any(self.val)) == True, str(self.val) + " is not truthy"
+        # if not self.val:
+        #     raise ValueError(str(self.val) + " is not truthy")
         
-    def to_run_under(self, seconds):
+    def to_run_under(self, seconds: float):
         if inspect.isfunction(self.val):
             start = time.time()
             if self.args:
