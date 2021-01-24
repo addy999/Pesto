@@ -1,22 +1,28 @@
-import inspect 
+import inspect
 import time
+
+
 class Expect:
-    
-    def __init__(self, val, args = None):
+    def __init__(self, val, args=None):
         self.val = val
         self.args = args
-        
+
     def to_be(self, a):
         if type(self.val) == type(a):
             assert self.val == a, str(self.val) + " does not equal " + str(a)
         else:
-            raise TypeError(str(type(self.val)) + " and " + str(type(a)) + " are not comparable types.")
-    
+            raise TypeError(
+                str(type(self.val))
+                + " and "
+                + str(type(a))
+                + " are not comparable types."
+            )
+
     def to_be_truthy(self):
         assert (any(self.val)) == True, str(self.val) + " is not truthy"
         # if not self.val:
         #     raise ValueError(str(self.val) + " is not truthy")
-        
+
     def to_run_under(self, seconds: float):
         if inspect.isfunction(self.val):
             start = time.time()
@@ -26,12 +32,14 @@ class Expect:
                 self.val()
             end = time.time()
             duration = (end - start) / 1000
-            print(duration)
+            # print(duration)
             if duration > seconds:
-                raise ValueError("Function took " + str(duration - seconds) + " s longer to run")
+                raise ValueError(
+                    "Function took " + str(duration - seconds) + " s longer to run"
+                )
         else:
-            raise TypeError(str(self.val)+ " is not a function.")
-    
+            raise TypeError(str(self.val) + " is not a function.")
+
     def to_throw_error(self):
         if inspect.isfunction(self.val):
             error = False
@@ -41,26 +49,26 @@ class Expect:
                 else:
                     self.val()
             except:
-                error = True # yay it threw error!
+                error = True  # yay it threw error!
             finally:
                 if not error:
                     raise ValueError("Did not throw error")
         else:
-            raise TypeError(str(self.val)+ " is not a function.")
-    
+            raise TypeError(str(self.val) + " is not a function.")
+
     def to_be_null(self):
         assert self.val == None, str(type(self.val)) + " is not None"
 
     def to_be_falsy(self):
-        assert self.val != True, str(self.val)+ " is not Falsy"
-        
+        assert self.val != True, str(self.val) + " is not Falsy"
+
     def to_contain(self, a):
         if type(self.val) in [list, str]:
             assert a in self.val, str(a) + " is not in " + str(self.val)
         else:
-            raise TypeError(str(self.val)+ " needs to be either a list or a string.")
-        
-        
+            raise TypeError(str(self.val) + " needs to be either a list or a string.")
+
+
 # Debug pass
 # Expect(1).to_be(1)
 # Expect(1).to_be_truthy()
