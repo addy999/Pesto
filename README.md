@@ -1,9 +1,10 @@
 # Pest
 
-<img src="logo.png" style="display: block;margin-left: auto;margin-right: auto;margin-bottom:10;
-" width="150"/>
+<p align="center" width="100%">
+  <img src="logo.png" width="150">
+</p>
 
-<p align="center">
+<p align="center" width="100%">
 <a href="https://coveralls.io/github/addy999/Pest"><img alt="Coverage Status" src="https://coveralls.io/repos/github/addy999/Pest/badge.svg"></a>
 <a href="https://travis-ci.com/addy999/Pest"><img alt="Build Status" src="https://travis-ci.com/addy999/Pest.svg?branch=main"></a>
 <a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
