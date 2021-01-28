@@ -1,6 +1,6 @@
 # Pest
 
-[![Coverage Status](https://coveralls.io/repos/github/addy999/Pest/badge.svg?branch=main)](https://coveralls.io/github/addy999/Pest?branch=main)
+[![Coverage Status](https://coveralls.io/repos/github/addy999/Pest/badge.svg)](https://coveralls.io/github/addy999/Pest)
 [![Build Status](https://travis-ci.com/addy999/Pest.svg?branch=main)](https://travis-ci.com/addy999/Pest)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 <a href="https://github.com/psf/black/blob/master/LICENSE"><img alt="License: MIT" src="https://black.readthedocs.io/en/stable/_static/license.svg"></a>
