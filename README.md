@@ -5,3 +5,11 @@
 
 ### A lightweight, fun-to-use Python testing framework made to use like the popular JS Jest library.
 <br>
+
+
+### Todo
+- [] Add multiprocessing support to run tests in parallel
+- [] Create github action
+
+General unittest / pytest like functionality:
+- [] Mocking (integrate unittest.mock)
