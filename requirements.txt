@@ -5,3 +5,4 @@ coverage
 watchdog
 tqdm
 pytest
+coveralls
