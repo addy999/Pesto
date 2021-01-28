@@ -1,6 +1,7 @@
 # Pest
 
-<img src="logo.png" style="display: block;margin: 10px auto;" width="150"/>
+<img src="logo.png" style="display: block;margin-left: auto;margin-right: auto;margin-bottom:10;
+" width="150"/>
 
 <p align="center">
 <a href="https://coveralls.io/github/addy999/Pest"><img alt="Coverage Status" src="https://coveralls.io/repos/github/addy999/Pest/badge.svg"></a>
