@@ -8,8 +8,8 @@
 
 
 ### Todo
-- [] Add multiprocessing support to run tests in parallel
-- [] Create github action
+- [ ] Add multiprocessing support to run tests in parallel
+- [ ] Create github action
 
 General unittest / pytest like functionality:
-- [] Mocking (integrate unittest.mock)
+- [ ] Mocking (integrate unittest.mock)
