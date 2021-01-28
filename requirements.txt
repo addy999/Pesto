@@ -1,3 +1,6 @@
 color-terminal
 thesmuggler
 typer
+coverage
+watchdog
+tqdm
