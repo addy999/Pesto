@@ -1,22 +1,29 @@
 import glob
 import os
+import typer
 from typing import List
 from .classes import TestSuite, Summary, ColorText
+from .utils import *
 from thesmuggler import smuggle
+from tqdm import tqdm
+import time
 
 
 def run_test_suites(suites: List[TestSuite], sync=True):
 
-    print(ColorText.YELLOW + f"Running {len(suites)} test suites \n")
+    tqdm.write(ColorText.YELLOW + f"Running {len(suites)} test suites \n")
 
-    for suite in suites:
+    for suite in tqdm(
+        suites, bar_format="{l_bar}{bar:30}{r_bar}{bar:-30b}", desc="Test suites"
+    ):
         suite.run(sync=sync)
+        time.sleep(1)
 
     summary = Summary(suites)
 
-    print(ColorText.YELLOW + "\n*** Summary ***")
-    print(ColorText.WHITE + summary.suites_passed())
-    print(ColorText.WHITE + summary.tests_passed())
+    tqdm.write(ColorText.YELLOW + "\n*** Summary ***")
+    tqdm.write(ColorText.WHITE + summary.suites_passed())
+    tqdm.write(ColorText.WHITE + summary.tests_passed())
 
 
 def find_test_suites(test_file: str):
@@ -38,5 +45,4 @@ def find_test_files(dir: str) -> List[str]:
     Search is recursive, so pass in only the parent directory for search
     """
     assert os.path.isdir(dir)
-    # abs_dir = os.path.abspath(dir)
-    return glob.glob(dir + "**/*test*.py", recursive=True)
+    return match_dir(dir)
