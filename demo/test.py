@@ -37,20 +37,3 @@ awesome_tests = describe(
         it("should complete 100000 runs in < 1e-4 s", awesome_time_check),
     ],
 )
-
-awesome_tessts = describe(
-    "adwesome function",
-    [
-        it("should work on test cases", awesome_function_test_cases),
-        it("should raise an error on invalid inputs", awesome_input_check),
-        it("should complete 100000 runs in < 1e-4 s", awesome_time_check),
-    ],
-)
-awesdome_tests = describe(
-    "awessome function",
-    [
-        it("should work on test cases", awesome_function_test_cases),
-        it("should raise an error on invalid inputs", awesome_input_check),
-        it("should complete 100000 runs in < 1e-4 s", awesome_time_check),
-    ],
-)

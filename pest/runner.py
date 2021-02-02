@@ -17,7 +17,6 @@ def run_test_suites(suites: List[TestSuite], sync=True):
         suites, bar_format="{l_bar}{bar:30}{r_bar}{bar:-30b}", desc="Test suites"
     ):
         suite.run(sync=sync)
-        time.sleep(1)
 
     summary = Summary(suites)
 
