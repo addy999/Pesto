@@ -50,3 +50,49 @@ def test_to_be_falsy():
     obj2 = []
     assert runner(lambda: Expect(obj1).to_be_falsy()) == False
     assert runner(lambda: Expect(obj2).to_be_falsy())
+
+
+def test_to_throw_error():
+    def error_func():
+        raise ValueError()
+
+    def nice_func():
+        pass
+
+    assert runner(lambda: Expect(error_func).to_throw_error())
+    assert runner(lambda: Expect(nice_func).to_throw_error()) == False
+
+
+def test_to_have_property():
+    class Tea:
+        def __init__(self, flavor):
+            self.flavor = flavor
+
+    tea = Tea("chai")
+
+    assert runner(lambda: Expect(tea).to_have_property("flavor"))
+    assert runner(lambda: Expect(tea).to_have_property("temp")) == False
+
+
+def test_to_be_instance_of():
+    class Tea:
+        def __init__(self, flavor):
+            self.flavor = flavor
+
+    tea = Tea("chai")
+
+    assert runner(lambda: Expect(tea).to_be_instance_of(Tea))
+    assert runner(lambda: Expect(1).to_be_instance_of(Tea)) == False
+
+
+def test_to_be_none():
+
+    assert runner(lambda: Expect(None).to_be_none())
+    assert runner(lambda: Expect(1).to_be_none()) == False
+
+
+def test_to_contain():
+    # List
+    obj1 = [1, 2, 3, 4, 5]
+    assert runner(lambda: Expect(obj1).to_contain(1))
+    assert runner(lambda: Expect(obj1).to_contain(0)) == False

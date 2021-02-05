@@ -6,3 +6,4 @@ watchdog
 tqdm
 pytest
 coveralls
+PyHamcrest

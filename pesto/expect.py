@@ -1,6 +1,8 @@
 import inspect
 import time
 
+from hamcrest import *
+
 
 class Expect:
     def __init__(self, val, args=None):
@@ -58,8 +60,38 @@ class Expect:
         else:
             raise TypeError(str(self.val) + " is not a function.")
 
-    def to_be_null(self):
-        assert self.val == None, str(type(self.val)) + " is not None"
+    def __to_have_length(self, length: int):
+
+        if type(length) != int:
+            raise TypeError("Length must be an integer")
+
+        # assert len(self.val) == length
+        assert_that(self.val, has_length(length))
+
+    def to_have_property(self, property: str):
+        assert_that(self.val, has_property(property))
+
+    def to_be_instance_of(self, base_class: any):
+        assert_that(self.val, instance_of(base_class))
+
+    def to_be_none(self):
+
+        assert self.val is None
+
+    def to_be_close_to(self, val: float):
+
+        assert_that(self.val, close_to(val))
+
+    def to_be_less_than(self, val: float):
+
+        assert_that(self.val, less_than(val))
+
+    def to_be_greater_than(self, val: float):
+
+        assert_that(self.val, greater_than(val))
+
+    def to_be_empty(self):
+        assert_that(self.val, empty())
 
     def to_be_falsy(self):
         error = False
@@ -75,18 +107,4 @@ class Expect:
         # assert self.val != True, str(self.val) + " is not Falsy"
 
     def to_contain(self, a):
-        if type(self.val) in [list, str]:
-            assert a in self.val, str(a) + " is not in " + str(self.val)
-        else:
-            raise TypeError(str(self.val) + " needs to be either a list or a string.")
-
-
-# Debug pass
-# Expect(1).to_be(1)
-# Expect(1).to_be_truthy()
-# Expect(0).to_be_falsy()
-# Expect(lambda: 1 / 0).to_throw_error()
-
-# Debug errors
-# Expect(1).to_be(10)
-# Expect(1).to_be("1")
+        assert a in self.val, str(a) + " is not in " + str(self.val)
