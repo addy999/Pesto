@@ -1,5 +1,4 @@
 # Pesto
-[still under development]
 
 <p align="center" width="100%">
   <img src="logo.png" width="150">
@@ -13,12 +12,25 @@
 </p>
 
 ### A lightweight, fun-to-use Python testing framework made to use like the popular JS Jest library.
+[under development]
 <br>
 
 
-### Todo
+## Why?
+Coming back to software development after being a front-end engineer opened my eyes on how verbose and anti-user-friendly Python testing really is - in my opinion.
+
+I want to enjoy writing tests as much as I loved them with my front-end stack, so I decided to create a little testing framework to mimic that behavior, while still being a robust testing tool.
+
+## Development
+I'm still a novice when it comes to testing, so the capabilities of this library will grow as I grow as a developer
+
+
+## Todo
+### General
+
 - [ ] Add multiprocessing support to run tests in parallel
 - [ ] Create github action
+- [ ] Add Poetry
 
-General unittest / pytest like functionality:
+### unittest / pytest like functionality:
 - [ ] Mocking (integrate unittest.mock)
