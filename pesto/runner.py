@@ -11,10 +11,10 @@ import time
 
 def run_test_suites(suites: List[TestSuite], sync=True):
 
-    tqdm.write(ColorText.YELLOW + f"Running {len(suites)} test suites \n")
+    tqdm.write(ColorText.BLACK + f"Running {len(suites)} test suites \n")
 
     for suite in tqdm(
-        suites, bar_format="{l_bar}{bar:30}{r_bar}{bar:-30b}", desc="Test suites"
+        suites, bar_format="{l_bar}{bar:30}{r_bar}{bar:-30b}", desc="All test suites"
     ):
         suite.run(sync=sync)
 

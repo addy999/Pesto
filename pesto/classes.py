@@ -95,8 +95,6 @@ class TestSuite:
 
     def run(self, sync=True):
 
-        tqdm.write(ColorText.BLUE + "*" + self.name.capitalize() + "*")
-
         # TODO: Add multiprocesing support for suite tests
         # if not sync:
         #     pool = multiprocessing.Pool()
@@ -111,7 +109,11 @@ class TestSuite:
         # Run
 
         self.results = []
-        for test in tqdm(self.tests, bar_format="{l_bar}{bar:10}{r_bar}{bar:-10b}"):
+        for test in tqdm(
+            self.tests,
+            bar_format="{l_bar}{bar:30}{r_bar}{bar:-30b}",
+            desc=f"{self.name.capitalize()}",
+        ):
             self.results.append(self.test_runner(test))
 
         # Eval results

@@ -13,6 +13,5 @@ def test_file_match():
     assert match_file("/hi/how/are/tests/test.py")
 
 
-# def test_match_dir():
-#     print(os.path.abspath("tests/"))
-#     assert "utils_test.py" in match_dir(os.path.abspath("./"))
+def test_match_dir():
+    assert "tests/utils_test.py" in match_dir("")
