@@ -8,7 +8,7 @@ import coverage
 import typer
 import webbrowser
 
-from pest.runner import *
+from pesto.runner import *
 
 
 def main(

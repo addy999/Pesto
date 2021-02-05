@@ -4,7 +4,7 @@ import pathlib
 sys.path.append(os.path.join(pathlib.Path(__file__).parent.absolute(), "../"))
 
 from demo.function import my_awesome_function
-from pest import it, describe, expect
+from pesto import it, describe, expect
 
 
 def awesome_function_test_cases():

@@ -1,5 +1,5 @@
 language: python
 script:
-  - coverage run --source=pest -m pytest tests/
+  - coverage run --source=pesto -m pytest tests/
 after_script:
   - coveralls
