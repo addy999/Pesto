@@ -19,9 +19,11 @@ class Expect:
             )
 
     def to_be_truthy(self):
-        assert (any(self.val)) == True, str(self.val) + " is not truthy"
-        # if not self.val:
-        #     raise ValueError(str(self.val) + " is not truthy")
+        # assert (any(self.val)) == True, str(self.val) + " is not truthy"
+        if self.val or any(self.val):
+            pass
+        else:
+            raise ValueError(str(self.val) + " is not truthy")
 
     def to_run_under(self, seconds: float):
         if inspect.isfunction(self.val):
@@ -60,7 +62,17 @@ class Expect:
         assert self.val == None, str(type(self.val)) + " is not None"
 
     def to_be_falsy(self):
-        assert self.val != True, str(self.val) + " is not Falsy"
+        error = False
+        try:
+            self.to_be_truthy()
+            error = True
+        except:
+            pass
+        finally:
+            if error:
+                raise ValueError(f"{self.val} is not Falsy")
+
+        # assert self.val != True, str(self.val) + " is not Falsy"
 
     def to_contain(self, a):
         if type(self.val) in [list, str]:
