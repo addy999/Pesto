@@ -22,6 +22,35 @@ def match_file(file_path: str) -> bool:
     ]
 
 
+def format_error_msg(msg: list) -> str:
+
+    """
+    Sample:
+    Traceback (most recent call last):
+        File "/home/addy/Documents/PEst/pesto/../pesto/classes.py", line 17, in run
+            self.func()
+        File "/home/addy/Documents/PEst/demo/function_test.py", line 12, in test_awesome_function_cases
+            expect(my_awesome_function(1, 1)).to_be(3.5)
+        File "/home/addy/Documents/PEst/pesto/../pesto/expect.py", line 14, in to_be
+            assert self.val == a, str(self.val) + " does not equal " + str(a)
+    AssertionError: 35.5 does not equal 3.5
+    """
+
+    phrases_to_skip = ["Traceback", "pesto", "assert " "self."]
+    lines_to_keep = []
+    for line in msg:
+        to_keep = True
+        # line = line.strip()
+        for phrase in phrases_to_skip:
+            if phrase in line:
+                to_keep = False
+                break
+        if to_keep:
+            lines_to_keep.append(line)
+
+    return "\n".join(lines_to_keep[1:])
+
+
 class RestartTestHandler(FileSystemEventHandler):
     def __init__(self, tester):
         super().__init__()

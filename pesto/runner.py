@@ -11,7 +11,7 @@ import time
 
 def run_test_suites(suites: List[TestSuite], sync=True):
 
-    tqdm.write(ColorText.BLACK + f"Running {len(suites)} test suites \n")
+    tqdm.write(ColorText.WHITE + f"Running {len(suites)} test suites \n")
 
     for suite in tqdm(
         suites, bar_format="{l_bar}{bar:30}{r_bar}{bar:-30b}", desc="All test suites"
@@ -21,11 +21,11 @@ def run_test_suites(suites: List[TestSuite], sync=True):
     summary = Summary(suites)
 
     tqdm.write(ColorText.YELLOW + "\n*** Summary ***")
-    tqdm.write(ColorText.WHITE + summary.suites_passed())
-    tqdm.write(ColorText.WHITE + summary.tests_passed())
+    tqdm.write(ColorText.WHITE + summary.print_suites_passed())
+    tqdm.write(ColorText.WHITE + summary.print_tests_passed())
 
 
-def find_test_suites(test_file: str):
+def find_test_suites(test_file: str) -> List[TestSuite]:
     assert os.path.isfile(test_file)
     test_module = smuggle(test_file)
     return [

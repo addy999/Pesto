@@ -1,6 +1,7 @@
-from .classes import Test, TestSuite
-from .expect import Expect as expect
+from .classes import Test as _, TestSuite as _s
+from .expect import Expect as _e
 
-it = Test.it
-test = Test.test
-describe = TestSuite.describe
+it = _.it
+# test = Test.test
+describe = _s.describe
+expect = _e

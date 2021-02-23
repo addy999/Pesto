@@ -5,13 +5,43 @@ from hamcrest import *
 
 
 class Expect:
-    def __init__(self, val, args=None):
+    def __init__(self, val, args=None, is_not=False, stop_recursive=False):
+
         self.val = val
         self.args = args
+        self.a = None
+
+        self.__is_not = is_not
+        if not stop_recursive:
+            self.a = self.__create_not(val, args)
+
+    @classmethod
+    def __create_not(cls, val, args):
+        return cls(val, args, is_not=True, stop_recursive=True)
+
+    # def not_decorator(self, func):
+
+    #     if not self.__is_not:
+    #         return func
+
+    #     else:
+    #         def wrapper(func, *args, **kwargs):
+    #             error = None
+    #             try:
+    #                 func(*args, **kwargs)
+    #             except Exception as e:
+    #                 error = e  # yay it threw error!
+    #             finally:
+    #                 if not error:
+    #                     raise ValueError("Did not throw error")
 
     def to_be(self, a):
+
         if type(self.val) == type(a):
-            assert self.val == a, str(self.val) + " does not equal " + str(a)
+            if self.__is_not:
+                assert self.val != a, str(self.val) + " equals " + str(a)
+            else:
+                assert self.val == a, str(self.val) + " does not equal " + str(a)
         else:
             raise TypeError(
                 str(type(self.val))
@@ -21,13 +51,15 @@ class Expect:
             )
 
     def to_be_truthy(self):
-        # assert (any(self.val)) == True, str(self.val) + " is not truthy"
+
         if self.val or any(self.val):
-            pass
+            if self.__is_not:
+                raise ValueError(str(self.val) + " is truthy")
         else:
             raise ValueError(str(self.val) + " is not truthy")
 
     def to_run_under(self, seconds: float):
+
         if inspect.isfunction(self.val):
             start = time.time()
             if self.args:
@@ -41,10 +73,15 @@ class Expect:
                 raise ValueError(
                     "Function took " + str(duration - seconds) + " s longer to run"
                 )
+            elif self.__is_not:
+                raise ValueError(
+                    "Function took " + str(duration - seconds) + " s to run"
+                )
         else:
             raise TypeError(str(self.val) + " is not a function.")
 
     def to_throw_error(self):
+
         if inspect.isfunction(self.val):
             error = False
             try:
@@ -55,23 +92,21 @@ class Expect:
             except:
                 error = True  # yay it threw error!
             finally:
-                if not error:
-                    raise ValueError("Did not throw error")
+                if error and self.__is_not:
+                    raise ValueError("Threw an error.")
+                if not error and not self.__is_not:
+                    raise ValueError("Did not throw error.")
         else:
             raise TypeError(str(self.val) + " is not a function.")
 
-    def __to_have_length(self, length: int):
-
-        if type(length) != int:
-            raise TypeError("Length must be an integer")
-
-        # assert len(self.val) == length
-        assert_that(self.val, has_length(length))
+    #### Left to add "not" to :
 
     def to_have_property(self, property: str):
+
         assert_that(self.val, has_property(property))
 
     def to_be_instance_of(self, base_class: any):
+
         assert_that(self.val, instance_of(base_class))
 
     def to_be_none(self):
@@ -91,9 +126,11 @@ class Expect:
         assert_that(self.val, greater_than(val))
 
     def to_be_empty(self):
+
         assert_that(self.val, empty())
 
     def to_be_falsy(self):
+
         error = False
         try:
             self.to_be_truthy()
@@ -107,4 +144,5 @@ class Expect:
         # assert self.val != True, str(self.val) + " is not Falsy"
 
     def to_contain(self, a):
+
         assert a in self.val, str(a) + " is not in " + str(self.val)
