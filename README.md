@@ -21,6 +21,22 @@ Coming back to software development after being a front-end engineer opened my e
 
 I want to enjoy writing tests as much as I loved them with my front-end stack, so I decided to create a little testing framework to mimic that behavior, while still being a robust testing tool.
 
+## Get Started
+
+The CLI is very similar to PyTest. Simply give the directory of the tests as the first argument (or `./` is used by default.)
+
+**A drag and drop replacement for PyTest**
+
+Pesto looks for test files and functions with `_test` or `test_` in the name.
+
+```bash
+pip install pesto
+pesto <test-dir>
+```
+
+<script id="asciicast-72UmicqZsRZdjz8GZng4j6lF1" src="https://asciinema.org/a/72UmicqZsRZdjz8GZng4j6lF1.js" async></script>
+
+
 ## Development
 I'm still a novice when it comes to testing, so the capabilities of this library will grow as I grow as a developer
 
