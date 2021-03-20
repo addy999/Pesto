@@ -3,8 +3,11 @@ import pathlib
 
 sys.path.append(os.path.join(pathlib.Path(__file__).parent.absolute(), "../"))
 
-from demo.function import my_awesome_function
 from pesto import it, describe, expect
+
+
+def my_awesome_function(a, b):
+    return a + b / 2 + 34
 
 
 def test_awesome_function_cases():
