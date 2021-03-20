@@ -34,7 +34,9 @@ pip install pesto
 pesto <test-dir>
 ```
 
-<script id="asciicast-72UmicqZsRZdjz8GZng4j6lF1" src="https://asciinema.org/a/72UmicqZsRZdjz8GZng4j6lF1.js" async></script>
+<p align="center" width="100%">
+  <img src="terminal.gif">
+</p>
 
 
 ## Development
