@@ -1,7 +1,7 @@
 # Pesto
 
 <p align="center" width="100%">
-  <img src="logo.png" width="150">
+  <img src="./logo.png" width="150">
 </p>
 
 <p align="center" width="100%">
@@ -35,7 +35,7 @@ pesto <test-dir>
 ```
 
 <p align="center" width="100%">
-  <img src="terminal.gif">
+  <img src="./terminal.gif">
 </p>
 
 

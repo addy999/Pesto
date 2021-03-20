@@ -1,13 +1,19 @@
 [tool.poetry]
-name = "Pesto"
-version = "0.1.0"
+name = "pesto-testing"
+version = "0.1.3"
 description = "Who says writing tests should be boring? Introducing Pest, a lightweight, fun-to-use Python testing framework referenced from the popular JS Jest library."
 authors = ["Addy Bhatia <jude.addy999@gmail.com>"]
 license = "MIT"
 readme = "README.md"
+packages = [
+    {include = "pesto"},
+    {include = "terminal.gif"},
+    {include = "logo.png"}
+]
+repository = "https://github.com/addy999/Pesto"
 
 [tool.poetry.scripts]
-pesto = "pesto.main:app"
+pesto = "main:app"
 
 [tool.poetry.dependencies]
 python = "^3.8"
