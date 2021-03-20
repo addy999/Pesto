@@ -30,13 +30,3 @@ def test_awesome_time():
     expect(lambda: [my_awesome_function(1, 1) for i in range(100000)]).to_run_under(
         1e-4
     )
-
-
-awesome_tests = describe(
-    "awesome function",
-    [
-        it("should work on test cases", test_awesome_function_cases),
-        it("should raise an error on invalid inputs", test_awesome_input),
-        it("should complete 100000 runs in < 1e-4 s", test_awesome_time),
-    ],
-)

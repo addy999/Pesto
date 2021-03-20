@@ -6,7 +6,9 @@ sys.path.append(parent_dir)
 
 import pesto
 from pesto.src.runner import *
-from demo import awesome_tests
+
+import demo
+from demo.pesto_test import *
 
 
 def test_file_finder():
@@ -23,9 +25,18 @@ def test_file_finder():
 
 def test_suite_finder():
     test_file = os.path.join(parent_dir, "demo/pesto_test.py")
-    suites_found = find_test_suites(test_file)
+    suite_found = find_test_suite(test_file)
 
-    for my_test, other_test in zip(awesome_tests.tests, suites_found[0].tests):
+    awesome_tests = TestSuite.describe(
+        "awesome function",
+        [
+            it("", test_awesome_function_cases),
+            it("", test_awesome_input),
+            it("", test_awesome_time),
+        ],
+    )
+
+    for my_test, other_test in zip(awesome_tests.tests, suite_found.tests):
         assert my_test.name == other_test.name
         assert my_test.func != other_test.func
 

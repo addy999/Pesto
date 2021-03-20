@@ -3,9 +3,12 @@ import coverage
 import typer
 import webbrowser
 
-from src.runner import *
+from .src.runner import *
+
+app = typer.Typer()
 
 
+@app.command()
 def main(
     dir: str = typer.Argument(
         "./", help="Directory containing tests, named with *tests*.py pattern."
@@ -42,15 +45,13 @@ def main_runner(dir: str, cov: bool, cov_dir: str, open_cov: bool):
 
     if cov or open_cov:
 
-        cov = coverage.Coverage(
-            source=[os.path.abspath(dir)], omit=["**/__init__.py", BLOB]
-        )
+        cov = coverage.Coverage(source=[os.path.abspath(dir)], omit=["**/__init__.py"])
         cov.start()
 
     test_files = find_test_files(dir)
     test_suites = []
     for test_file in test_files:
-        test_suites += find_test_suites(os.path.join(os.getcwd(), test_file))
+        test_suites += find_test_suite(os.path.join(os.getcwd(), test_file))
 
     run_test_suites(test_suites)
 
@@ -63,6 +64,6 @@ def main_runner(dir: str, cov: bool, cov_dir: str, open_cov: bool):
             os.system(f"cd {cov_dir} && python3 -m http.server")
 
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
 
-    typer.run(main)
+#     typer.run(main)
