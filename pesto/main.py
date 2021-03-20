@@ -1,14 +1,9 @@
-import os, sys
-import pathlib
-
-sys.path.append(os.path.join(pathlib.Path(__file__).parent.absolute(), "../"))
-
-# import os
+import os
 import coverage
 import typer
 import webbrowser
 
-from pesto.runner import *
+from src.runner import *
 
 
 def main(

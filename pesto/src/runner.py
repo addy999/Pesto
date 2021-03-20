@@ -1,12 +1,14 @@
 import glob
 import os
-import typer
+import time
 from typing import List
-from .classes import TestSuite, Summary, ColorText
-from .utils import *
+
+import typer
 from thesmuggler import smuggle
 from tqdm import tqdm
-import time
+
+from .classes import ColorText, Summary, TestSuite
+from .utils import *
 
 
 def run_test_suites(suites: List[TestSuite], sync=True):

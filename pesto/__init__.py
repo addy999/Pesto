@@ -1,7 +1,11 @@
-from .classes import Test as _, TestSuite as _s
-from .expect import Expect as _e
+# import os, sys
+# import pathlib
 
-it = _.it
-# test = Test.test
-describe = _s.describe
-expect = _e
+# sys.path.append(os.path.join(pathlib.Path(__file__).parent.absolute(), "../"))
+
+from .src.classes import Test, TestSuite
+from .src.expect import Expect
+
+it = Test.it
+describe = TestSuite.describe
+expect = Expect

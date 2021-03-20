@@ -101,6 +101,7 @@ class TestSuite:
         # TODO: Add cleanup step after all + each
 
     def __eq__(self, other_suite):
+        # TODO: Fix his equality, has some bugs
         my_vars = {i: j for i, j in self.__dict__.items() if i != "tests"}
         other_vars = {i: j for i, j in other_suite.__dict__.items() if i != "tests"}
 
