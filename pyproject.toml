@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "Pesto"
+version = "0.1.0"
+description = "Who says writing tests should be boring? Introducing Pest, a lightweight, fun-to-use Python testing framework referenced from the popular JS Jest library."
+authors = ["Addy Bhatia <jude.addy999@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.scripts]
+pesto = "pesto.main:app"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+color-terminal = "^1.0"
+thesmuggler = "^1.0.1"
+typer = {extras = ["all"], version = "^0.3.2"}
+coverage = "^5.5"
+watchdog = "^2.0.2"
+tqdm = "^4.59.0"
+PyHamcrest = "^2.0.2"
+
+[tool.poetry.dev-dependencies]
+coveralls = "^3.0.1"
+pytest = "^6.2.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

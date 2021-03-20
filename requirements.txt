@@ -1,9 +1,7 @@
 color-terminal
 thesmuggler
-typer
+typer[all]
 coverage
 watchdog
 tqdm
-pytest
-coveralls
 PyHamcrest

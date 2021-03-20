@@ -1,4 +1,6 @@
 language: python
+before_script:
+  - pip install -r dev-requirements.txt
 script:
   - coverage run --source=pesto -m pytest tests/
 after_script:
