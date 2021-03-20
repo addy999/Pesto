@@ -3,7 +3,7 @@ import pathlib
 
 sys.path.append(os.path.join(pathlib.Path(__file__).parent.absolute(), "../"))
 
-from pesto.expect import Expect
+from pesto import Expect
 
 
 def runner(lam):

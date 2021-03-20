@@ -4,8 +4,9 @@ import pathlib
 parent_dir = os.path.join(pathlib.Path(__file__).parent.absolute(), "../")
 sys.path.append(parent_dir)
 
-from pesto.runner import *
-from demo.test import awesome_tests
+import pesto
+from pesto.src.runner import *
+from demo import awesome_tests
 
 
 def test_file_finder():
@@ -21,7 +22,11 @@ def test_file_finder():
 
 
 def test_suite_finder():
-    test_file = os.path.join(parent_dir, "demo/test.py")
+    test_file = os.path.join(parent_dir, "demo/pesto_test.py")
     suites_found = find_test_suites(test_file)
 
-    assert suites_found[0] == awesome_tests
+    for my_test, other_test in zip(awesome_tests.tests, suites_found[0].tests):
+        assert my_test.name == other_test.name
+        assert my_test.func != other_test.func
+
+    # assert suites_found[0] == awesome_tests

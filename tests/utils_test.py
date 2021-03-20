@@ -3,7 +3,8 @@ import pathlib
 
 sys.path.append(os.path.join(pathlib.Path(__file__).parent.absolute(), "../"))
 
-from pesto.utils import match_dir, match_file
+import pesto
+from pesto.src.utils import match_dir, match_file
 
 
 def test_file_match():

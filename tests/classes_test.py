@@ -3,14 +3,14 @@ import pathlib
 
 sys.path.append(os.path.join(pathlib.Path(__file__).parent.absolute(), "../"))
 
-from pesto.classes import *
+from pesto import *
 
 
 def test_test_constructor():
     def should_run_func():
         return None
 
-    it = Test.it(should_run_func)
+    it = Test.it("should_run_func", should_run_func)
     assert it.name == "should_run_func"
 
 
