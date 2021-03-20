@@ -60,5 +60,5 @@ def find_test_files(dir: str) -> List[str]:
 
     Search is recursive, so pass in only the parent directory for search
     """
-    assert os.path.isdir(dir)
+    assert os.path.isdir(dir), f"{dir} is not a dir"
     return match_dir(dir)
