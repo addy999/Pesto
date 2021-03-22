@@ -48,7 +48,8 @@ I'm still a novice when it comes to testing, so the capabilities of this library
 
 - [ ] Add multiprocessing support to run tests in parallel
 - [ ] Create github action
-- [ ] Add Poetry
+- [X] Add Poetry support
 
 ### unittest / pytest like functionality:
 - [ ] Mocking (integrate unittest.mock)
+- [ ] Add proper fixtures
